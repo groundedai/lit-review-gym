@@ -21,3 +21,12 @@ def get_citations(paper_id: str):
         citations = c.fetchall()
         citations = [citation[0] for citation in citations]
     return citations
+
+
+def get_doc_ids_with_citations():
+    with sqlite3.connect(db_path) as conn:
+        c = conn.cursor()
+        c.execute("SELECT doc_id FROM citations")
+        citations = c.fetchall()
+        citations = [citation[0] for citation in citations]
+    return citations

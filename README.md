@@ -2,6 +2,12 @@
 
 Contains code and data for LitReviewGym. The goal is to provide an environment to train autonomous agents to perform literature reviews.
 
+## Downloading the data
+
+Data is managed by DVC. To download the data, run
+
+`dvc pull`
+
 ## Dataset Creation
 
 The code is documented in `make_dataset.ipynb`.
