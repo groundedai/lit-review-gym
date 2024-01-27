@@ -9,6 +9,7 @@ The code is documented in `make_dataset.ipynb`.
 Broadly, the steps are:
 - Query Semantic Scholar to get open access reviews
 - Get citation IDs for each paper from Semantic Scholar
+- Get full texts and decompose into headings and paragraphs
 
 ## Data model
 

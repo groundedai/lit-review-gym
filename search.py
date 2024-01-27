@@ -1,27 +1,27 @@
-import os
-import json
+import db
 import logging
-import sqlite3
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-
-db_path = os.path.join(os.path.dirname(__file__), "data/citations.db")
-
-
-def _sqlite_search(query: str):
-    with sqlite3.connect(db_path) as conn:
-        c = conn.cursor()
-        c.execute("SELECT * FROM citations WHERE citations MATCH ?", (query,))
-        found = c.fetchall()
-    return found
+logging.basicConfig(level=logging.INFO)
 
 
 def keyword_search(query: str, limit: int = 100):
     """
     Search the index for the query
     """
-    found = _sqlite_search(query)
+    found = db.document_fts(query)
     found = found[0:limit]
-    logger.info(f"Found {len(found)} citations")
+    logging.info(f"keword_search: found {len(found)} results")
+    return found
+
+
+def multi_keyword_search(queries: list[str], limit: int = None, **kwargs):
+    """
+    Search the index for the query
+    """
+    found = []
+    for query in queries:
+        found += keyword_search(query, **kwargs)
+    if limit:
+        found = found[0:limit]
+    logging.info(f"multi_keyword_search: found {len(found)} results")
     return found
