@@ -1,6 +1,6 @@
 import logging
-import db
-import search
+from . import db
+from . import search
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -22,6 +22,6 @@ def eval_queries(paper_id: str, queries: list[str]):
     results["hits"] = hits
     recall = hits / len(target_ids)
     results["recall"] = recall
-    precision = hits / len(found_ids)
+    precision = hits / len(found_ids) + 1e-8
     results["precision"] = precision
     return results
