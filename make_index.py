@@ -85,4 +85,12 @@ with jsonlines.open(paper_details_path) as f:
             )
 
 conn.commit()
+
+c.execute("SELECT COUNT(*) FROM documents")
+logging.info(f"Number of documents: {c.fetchone()[0]}")
+c.execute("SELECT COUNT(*) FROM citations")
+logging.info(f"Number of citations: {c.fetchone()[0]}")
+c.execute("SELECT COUNT(DISTINCT doc_id) FROM citations")
+logging.info(f"Number of documents with citations: {c.fetchone()[0]}")
+
 conn.close()

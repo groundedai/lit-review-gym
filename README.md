@@ -4,9 +4,7 @@ Contains code and data for LitReviewGym. The goal is to provide an environment t
 
 ## Downloading the data
 
-Data is managed by DVC. To download the data, run
-
-`dvc pull`
+Data is managed by git LFS.
 
 ## Dataset Creation
 
